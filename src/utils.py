@@ -2,6 +2,7 @@ import os
 import sys
 import pyperclip
 from player import Player
+from settings import Settings
 from prettytable import PrettyTable
 
 # All CSGO Ranks
@@ -16,28 +17,36 @@ ranks = {
          18 : "GE"                                                                   # Global 
         }
 
-# GLOBAL FILENAMES
+# GLOBAL FILENAMES/FOLDERS
 CWD = os.getcwd()
 FRIEND_FILENAME = "/friends.txt"
 UI_FILENAME = "GUI.ui"
+SETTING_FILENAME = "settings.cfg"
 ICON_FILENAME = "icon.ico"
+CLEAR_FILENAME = "clear.png"
+COPY_FILENAME = "copy.png"
+PASTE_FILENAME = "paste.png"
+FRIEND_FILENAME = "friend.png"
+SEARCH_FILENAME = "search.png"
+ICON_FOLDER =  "icons/"
 IMAGE_FOLDER =  "images/"
 
 # URL for web scraping
 URL = 'https://csgostats.gg/player/'
 
 # UI STATIC STRING DATA
-TEXT_PLACEHOLDER   = 'copy "status" command result from CSGO console and click "Show Ranks" button \n\nenter friends steam ID/steam64 ID and press "Add Friends" button to blocklist them while finding ranks'
+TEXT_PLACEHOLDER   = 'copy "status" command result from CSGO console and click "Search Ranks" button \n\nenter friends steam ID/steam64 ID and press "Add Friends to blacklist" button to blocklist them while finding ranks'
 INIT_STATUS        = 'CSGO Rank Finder'
 FRIENDS_ADDED      = 'friend ID\'s successfully added to blocklist'
 WRONG_FRIENDS_TEXT = 'wrong steam ID\'s or steam64 ID\'s provided'
 RANKS_FOUND        = 'rank search successful'
-WRONG_INPUT_TEXT   = 'wrong input provided(excluding blocklist friends from search)'
+WRONG_INPUT_TEXT   = 'wrong input provided'
+WRONG_INPUT_TEXT_F = 'wrong input provided(excluding blacklist friends from search)'
 
 # GLOBAL DATA FOR UI
 NO_OF_COLUMNS = 6
 HEADER_LABELS = ["Name", "Rank", "Best Rank", "Wins", "HS %", "KD"]
-HEADER_LABEL_SIZES = [175, 200, 200, 75, 75, 75]
+HEADER_LABEL_SIZES = [350, 200, 200, 75, 75, 75]
 
 """
 Input  - 
@@ -55,10 +64,24 @@ def getUIFilePath():
 
 """
 Input  - 
+Output - returns settings.cfg file path used by GUI
+"""
+def getSettingFilePath():
+    return resource_path(SETTING_FILENAME)
+
+"""
+Input  - 
 Output - returns icon file path used by GUI
 """
 def getIconFilePath():
-    return resource_path(ICON_FILENAME)
+    return resource_path(ICON_FOLDER + "/" + ICON_FILENAME)
+
+"""
+Input  - iconFileName (CLEAR_FILENAME, COPY_FILENAME, PASTE_FILENAME, FRIEND_FILENAME, SEARCH_FILENAME)
+Output - returns icon file path used by GUI
+"""
+def getButtonIconFilePath(iconFileName):
+    return resource_path(ICON_FOLDER + "/" + iconFileName)
 
 """
 Input  - rank of player
@@ -132,3 +155,41 @@ def getPrettyTableString(players):
     tb.add_rows(data)
     
     return tb.get_string()
+
+"""
+Input  - 
+Output - reads from file and returns list of friends(steam64id's)
+"""
+def readSettingsFile():
+    excludeFriends = True
+    autoFindRank = True
+    autoCopyOutput = True
+    
+    fi = open(getSettingFilePath(),"a+")
+    fi.seek(0)
+    for line in fi.read().splitlines():
+        try:
+            data = line.split(":")
+            if data[0] == "excludeFriends" :
+                excludeFriends = data[1] == 'True'
+            elif data[0] == "autoFindRank" :
+                autoFindRank = data[1]  == 'True'
+            elif data[0] == "autoCopyOutput" :
+                autoCopyOutput = data[1]  == 'True'
+        except:
+            pass
+    
+    fi.close()
+    return Settings(excludeFriends, autoFindRank, autoCopyOutput)
+
+"""
+Input  - Settings object 
+Output - 
+"""
+def writeSettingsFile(settings):
+    fi = open(getSettingFilePath(),"w")
+    
+    for key, value in settings.__dict__.items():
+        fi.write(str(key) + ":" + str(value) + "\n")
+    
+    fi.close()

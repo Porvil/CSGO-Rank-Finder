@@ -90,7 +90,7 @@ def getPlayerRank(steam64id, friends):
         kills_per_death = data_json['overall']['kpd'] 
         
         player = Player(player_name, curr_rank, best_rank, total_wins, headshot_rate, kills_per_death)
-        print(player.getPrintableString)
+        print(player.getPrintableString(ranks))
         
         return player
     
