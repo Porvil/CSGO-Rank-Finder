@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>770</height>
+    <height>795</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>1024</width>
-    <height>770</height>
+    <height>795</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1024</width>
-    <height>770</height>
+    <height>795</height>
    </size>
   </property>
   <property name="font">
@@ -322,7 +322,7 @@ p, li { white-space: pre-wrap; }
      </sizepolicy>
     </property>
     <property name="text">
-     <string>Auto find ranks on start</string>
+     <string>Auto find ranks on start up</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="cb_friends">
@@ -358,7 +358,55 @@ p, li { white-space: pre-wrap; }
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="m_about">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="a_steam"/>
+    <addaction name="a_developer"/>
+    <addaction name="a_github"/>
+   </widget>
+   <addaction name="m_about"/>
+  </widget>
+  <action name="actionjk">
+   <property name="text">
+    <string>jk</string>
+   </property>
+  </action>
+  <action name="actionfvfr">
+   <property name="text">
+    <string>fvfr</string>
+   </property>
+  </action>
+  <action name="actionfr">
+   <property name="text">
+    <string>fr</string>
+   </property>
+  </action>
+  <action name="a_steam">
+   <property name="text">
+    <string>Steam Group</string>
+   </property>
+  </action>
+  <action name="a_developer">
+   <property name="text">
+    <string>Developer</string>
+   </property>
+  </action>
+  <action name="a_github">
+   <property name="text">
+    <string>Github</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

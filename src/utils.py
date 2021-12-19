@@ -19,9 +19,9 @@ ranks = {
 
 # GLOBAL FILENAMES/FOLDERS
 CWD = os.getcwd()
-FRIEND_FILENAME = "/friends.txt"
+FRIENDS_FILENAME = "/friends.txt"
 UI_FILENAME = "GUI.ui"
-SETTING_FILENAME = "settings.cfg"
+SETTING_FILENAME = "/settings.cfg"
 ICON_FILENAME = "icon.ico"
 CLEAR_FILENAME = "clear.png"
 COPY_FILENAME = "copy.png"
@@ -31,8 +31,11 @@ SEARCH_FILENAME = "search.png"
 ICON_FOLDER =  "icons/"
 IMAGE_FOLDER =  "images/"
 
-# URL for web scraping
+# URL for web scraping, Links
 URL = 'https://csgostats.gg/player/'
+STEAM_URL = 'https://steamcommunity.com/groups/pr0_noobs'
+DEVELOPER_URL = 'https://steamcommunity.com/id/pd08'
+GITHUB_URL = 'https://github.com/Porvil/CSGO-Rank-Finder'
 
 # UI STATIC STRING DATA
 TEXT_PLACEHOLDER   = 'copy "status" command result from CSGO console and click "Search Ranks" button \n\nenter friends steam ID/steam64 ID and press "Add Friends to blacklist" button to blocklist them while finding ranks'
@@ -53,7 +56,7 @@ Input  -
 Output - returns "friend.txt" CWD path
 """
 def getFriendsFilePath():
-    return CWD + FRIEND_FILENAME
+    return CWD + FRIENDS_FILENAME
 
 """
 Input  - 
@@ -64,10 +67,10 @@ def getUIFilePath():
 
 """
 Input  - 
-Output - returns settings.cfg file path used by GUI
+Output - returns "settings.cfg" CWD
 """
 def getSettingFilePath():
-    return resource_path(SETTING_FILENAME)
+    return CWD + SETTING_FILENAME
 
 """
 Input  - 

@@ -71,6 +71,11 @@ class Ui(QMainWindow):
         
         # ProgressBar
         self.progressBar  = self.findChild(QProgressBar, 'progressBar')
+        
+        # Menu Action
+        self.a_steam = self.findChild(QAction, 'a_steam')
+        self.a_developer = self.findChild(QAction, 'a_developer')
+        self.a_github = self.findChild(QAction, 'a_github')
     
     """
     initializes all UI elements
@@ -79,10 +84,19 @@ class Ui(QMainWindow):
         self.le_status.setText(INIT_STATUS) 
         self.te_input.setPlaceholderText(TEXT_PLACEHOLDER)
         
+        self.initMenu()
         self.initButtonFunctions()
         self.initButtonIconAndHoverText()
         self.initTableWidget()
         self.initSettingsUI()
+    
+    """
+    connect all Menu Actions to their functions
+    """
+    def initMenu(self):
+        self.a_steam.triggered.connect(lambda : self.openWebPage(STEAM_URL))
+        self.a_developer.triggered.connect(lambda : self.openWebPage(DEVELOPER_URL))
+        self.a_github.triggered.connect(lambda : self.openWebPage(GITHUB_URL))
     
     """
     connect all PushButtons to their functions
@@ -293,6 +307,13 @@ class Ui(QMainWindow):
     def clearTableWidget(self):
         while self.tw_output.rowCount() > 0:
             self.tw_output.removeRow(0)
+    
+    """
+    opens webpage based on provided url
+    """
+    def openWebPage(self, url):
+        url = QUrl(url)
+        QDesktopServices.openUrl(url)
     
     # Multithreading Functions below
     def processStatus(self, status, progress_callback):
