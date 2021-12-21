@@ -6,7 +6,7 @@
 [![](https://img.shields.io/github/repo-size/Porvil/CSGO-Rank-Finder)]()
 [![](https://img.shields.io/github/languages/code-size/Porvil/CSGO-Rank-Finder)]()
 
-CSGO Rank Finder is an Python GUI application based on PyQT-5.\
+CSGO Rank Finder is a Python GUI application based on PyQT-5.\
 The application can search rank of CSGO players.
 
 # Installation
@@ -46,4 +46,4 @@ The application can search rank of CSGO players.
 
 # Mentions
 
-- [csgo_rank_finder](https://github.com/PankajzYadav/csgo_rank_finder) by [Pankaj Yadav](https://github.com/PankajzYadav): Used in backend of the GUI.
+- [csgo_rank_finder](https://github.com/PankajzYadav/csgo_rank_finder) by [Pankaj Yadav](https://github.com/PankajzYadav): Used for backend of the GUI.
